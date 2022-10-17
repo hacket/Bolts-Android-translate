@@ -1,7 +1,8 @@
-# Bolts-Android 中文翻译
-##[Bolts-Android](https://github.com/BoltsFramework/Bolts-Android)
+## Bolts-Android 中文翻译
 
-###准备
+[Bolts-Android](https://github.com/BoltsFramework/Bolts-Android)
+
+### 准备
 
 github：
 https://github.com/BoltsFramework/Bolts-Android
@@ -16,14 +17,14 @@ https://github.com/BoltsFramework/Bolts-Android/blob/master/README.md
 
 `注`只翻译了Bolts-Android部分，[bolts-applinks](https://github.com/BoltsFramework/Bolts-Android/tree/master/bolts-applinks "bolts-applinks")没有翻译。
 
-###Tasks
+### Tasks
 创建一个真正及时响应的Android应用，必须保证耗时的操作在非UI线程中，避免任何让UI线程等待阻塞的事情。这意味着你需要在后台执行各种操作。为了让这种操作更简单，我们需要一个叫`Task`的类。一个`Task`代表一个异步操作。典型的，一个`Task`作为异步函数的返回，它有能力继续处理这个任务的结果。当一个`Task`作为一个函数的返回，表示它已经开始工作了。一个`Task`没有关联特定的线程模型：它代表的是所做的工作，不是在哪执行。`Task`s优于其他异步操作的方式，比如`callback`s和`AsyncTask`。
  * 消耗更少的系统资源，它们不再占用一个线程直到等待其他`Task`s
  * 连续执行数个任务不会像只使用回调函数时那样创建嵌套的“金字塔（pyramid）”代码。
  * `Task`s是完全可组合的，允许开发人员执行分支、并行和复杂的错误处理，不像意大利式的代码需要很多`callback`s。
  *  开发人员可以按照执行顺序安排基于任务的代码，而不必将逻辑分解到分散的回调函数中。
  
-###The `continueWith` Method
+### The `continueWith` Method
 每个`Task`有一个叫做`continueWith`的带`Continuation`参数的方法。`Continuation`是一个接口，只有一个必须要实现的方法，叫做`then`。`continueWith`是前一个`Task`执行完毕后会调用`then`方法。你能检查这个`Task`是否执行成功，得到它的执行结果。
 ```java
 Task.callInBackground(new Callable<String>() {
@@ -136,7 +137,7 @@ private Task<Integer> saveAsync(String result) {
 }
 ```
 
-###Error Handling
+### Error Handling
 谨慎选择是否需要调用`continueWith`或者`onSuccess`，你能控制error如何在你的应用传递。用`continueWith`自己处理错误。你能抛出一个异常来让你的Task失败。
 ```java
 Task.callInBackground(new Callable<String>() {
